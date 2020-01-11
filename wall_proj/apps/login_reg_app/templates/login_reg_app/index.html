@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>The Wall - Login and Registration</title>
+    <meta name="description" content="Papers, please.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_reg_app/style.css' %}">
+</head>
+
+<body>
+    <div class=title>
+        <h1>THE WALL</h1>
+    </div>
+    <div class="container">
+        <div class="register form">
+            <h2>Registration</h2>
+            <form action="/register" method="POST">
+                {% csrf_token %}
+                <p>First Name <input class="form-control" type="text" name="first_name"></p>
+                <p>Last Name <input class="form-control" type="text" name="last_name"></p>
+                <p>Email <input class="form-control" type="text" name="email"></p>
+                <p>Birthday <input class="form-control" type="date" name="birthday"></p>
+                <p>Password <input class="form-control" type="password" name="password"></p>
+                <p>Confirm Password <input class="form-control" type="password" name="password_confirm"></p>
+                <input class="btn btn-secondary" type="submit" value="Register">
+            </form>
+        </div>
+        <div class="spacer">
+        </div>
+        <div class="login form">
+            <h2>Login</h2>
+            <form action="/login" method="POST">
+                {% csrf_token %}
+                <p>Email <input class="form-control" type="text" name="email"></p>
+                <p>Password <input class="form-control" type="password" name="password"></p>
+                <input class="btn btn-secondary" type="submit" value="Log In">
+            </form>
+        </div>
+        <div class="errors">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                    {{ message }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

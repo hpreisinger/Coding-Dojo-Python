@@ -1,0 +1,161 @@
+* {
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    /* outline-style: solid; */
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-image: url("/static/login_reg_app/bg.jpg");
+    background-attachment: fixed;
+    color: whitesmoke;
+}
+
+h1 {
+    display: inline-block;
+    padding: 5px;
+    background-color: rgb(64, 106, 145);
+    color: whitesmoke;
+}
+
+h2 {
+    display: inline-block;
+    padding: 5px;
+    background-color: rgb(209, 209, 209);
+    color: black;
+}
+
+a {
+    font-weight: bolder;
+    text-decoration: underline;
+    color: rgb(64, 106, 145);
+}
+
+.container {
+    height: 700px;
+    width: 700px;
+    padding: 10px;
+}
+
+.title {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.register {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.spacer {
+    display: inline-block;
+    width: 200px;
+}
+
+.login {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.errors {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    left: 420px;
+    bottom: 260px;
+    max-width: 300px;
+    border: 2px solid red;
+    padding: 5px;
+    list-style-position: inside;
+    background-color: whitesmoke;
+    color: black;
+}
+
+input {
+    padding: 5px;
+    border: 2px solid black;
+}
+
+.logout {
+    text-align: right;
+}
+
+.header {
+    text-align: right;
+    height: 100px;
+    width: 100%;
+    background-image: linear-gradient(rgb(64, 106, 145, 1), rgb(64, 106, 145, 0));
+    padding-right: 10px;
+}
+
+.header h1{
+    display: inline-block;
+    background-color: rgb(64, 106, 145, 0);
+    font-size: 25pt;
+    margin-right: 10px;
+}
+
+.header button {
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 7px;
+}
+
+form input {
+    margin-top: 10px;
+}
+
+.submit {
+    text-align: right;
+}
+
+.postlist {
+    margin-top: 40px;
+}
+
+.post {
+    display: inline-block;
+    width: 90%;
+    border: 2px solid rgb(64, 106, 145);
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgb(209, 209, 209);
+    color: black;
+}
+
+.post h2 {
+    font-size: 15pt;
+    background-color: rgb(135, 170, 202);
+}
+
+.post p {
+    padding: 5px;
+}
+
+.commentlist {
+    text-align: right;
+    width: 100%;
+    padding-left: 10%;
+    margin-bottom: 40px;
+}
+
+.commentlist h2 {
+    font-size: 15pt;
+}
+
+.comment {
+    border: 2px solid rgb(209, 209, 209);
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgb(135, 170, 202);
+    color: black;
+}

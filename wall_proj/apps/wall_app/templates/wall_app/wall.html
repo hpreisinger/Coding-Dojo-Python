@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome to the Wall</title>
+    <meta name="description" content="HOW CAN YOU HAVE ANY PUDDING IF YOU DON'T EAT YOUR MEAT?">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_reg_app/style.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <h1>Welcome to the Wall, {{user.first_name}}</h1>
+        <a href="/logout"><button class="btn btn-secondary">Log Out</button></a>
+    </div>
+    <div class="container">
+        <h1>Post a Message</h1>
+        <form action="/post_message" method="POST">
+            {% csrf_token %}
+            <textarea rows="4" class="form-control" name="content"></textarea>
+            <div class="submit">
+                <input class="btn btn-secondary" type="submit">
+            </div>
+        </form>
+        <div class="postlist">
+            {% for message in messageList %}
+            <div class="post">
+                <h2>{{message.poster.first_name}} {{message.poster.last_name}} - {{message.created_at}}</h2>
+                <p>{{message.content}}</p>
+                {% if message.poster.id == request.session.currentUser and message.can_edit == True %}
+                <form action="/delete_message" method="POST">
+                    {% csrf_token %}
+                    <div class="submit">
+                        <input type="hidden" name="message" value={{message.id}}>
+                        <input class="btn btn-secondary" type="submit" value="Delete This">
+                    </div>
+                </form>
+                {% endif %}
+            </div>
+            <div class="commentlist">
+                {% for comment in message.comments.all %}
+                <div class="comment">
+                    <h2>{{comment.commenter.first_name}} {{comment.commenter.last_name}} - {{comment.created_at}}</h2>
+                    <p>{{comment.content}}</p>
+                    {% if comment.commenter.id == request.session.currentUser and comment.can_edit == True %}
+                    <form action="/delete_comment" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="comment" value={{comment.id}}>
+                        <div class="submit">
+                            <input class="btn btn-secondary" type="submit" value="Delete This">
+                        </div>
+                    </form>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <h2>Leave a Comment</h2>
+                <form action="/post_comment" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="post" value={{message.id}}>
+                    <textarea rows="2" class="form-control" name="content"></textarea>
+                    <div class="submit">
+                        <input class="btn btn-secondary" type="submit">
+                    </div>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>
