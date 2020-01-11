@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome</title>
+    <meta name="description" content="You are worthy.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_reg_app/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="logout">
+            <a href="/logout">Log Out</a>
+        </div>
+        <h1>Success! Welcome, {{user.first_name}}!</h1>
+        <p id="success">Successfully registered (or logged in)!</p>
+    </div>
+</body>
+
+</html>
