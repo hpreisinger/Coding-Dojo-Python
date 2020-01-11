@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Great Number Game</title>
+    <meta name="description" content="42??">
+    <link rel="stylesheet" typecopy="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1> Welcome to the Great Number Game!</h1>
+        <p>
+            I am thinking of a number between 1 and 100.<br> Take a guess!
+        </p>
+
+        {% if currentGuess != " " %}
+
+        {% if result == "correct" %}
+        <style>
+            .box {
+                display: inline-block;
+                background-color: green;
+                color: white;
+                padding: 50px;
+            }
+        </style>
+
+        <div class="box">
+            <h2>{{currentGuess}} was the number!</h2>
+            <p>You got there in {{guessCount}} guess(es).</p>
+            <a href="/reset"><button>Play again!</button></a>
+        </div>
+
+        {% endif %}
+
+        {% if result != "correct" %}
+        <div class="box">
+            <h2>{{result}}</h2>
+            <p>You've made {{guessCount}} guess(es).</p>
+        </div>
+
+        {% endif %}
+
+        {% endif %}
+
+        <form action="/submit" , method="POST">
+            <input type="text" name="guess"><br>
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+</body>
+
+</html>
