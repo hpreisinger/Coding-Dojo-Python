@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spooky in Seattle</title>
+    <meta name="description" content="Your guide to all things spooky in the greater Seattle area.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 100%;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="/dashboard"><img src="/static/main/img/logo.png" alt="Spooky in Seattle logo"></a>
+        <div class="header-content">
+            <h1>{{user.first_name}} {{user.last_name}}</h1>
+            <a href="/favorites">
+                <h2>My Favorites</h2>
+            </a>
+            <a href="/logout"><button class="btn btn-secondary">Log Out</button></a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <div class="main">
+                    {% for location in results %}
+                    <div class="result">
+                        <div class="result-info">
+                            <h2><b>{{location.name}}</b></h2>
+                            {% if location.category == 1 %}
+                            <p>Haunted House</p>
+                            {% elif location.category == 2 %}
+                            <p>Ghost Tour</p>
+                            {% elif location.category == 3 %}
+                            <p>Costume Store</p>
+                            {% elif location.category == 4 %}
+                            <p>Magic Shop</p>
+                            {% endif %}
+                            <p>Open Year-Round? {{location.year_round}}</p>
+                            <img src="/static/main/img/logos/{{location.logo}}.png" alt="logo of {{location.name}}">
+                            <div class="buttons"><a href="/location/{{location.id}}"><button
+                                        class="btn btn-secondary">Read More</button></a>
+                                <form action="/location/{{location.id}}/add_fav">
+                                    <input type="submit" class="btn btn-danger" value="Add to Favs">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg mapstuff">
+                <a href="/reset">New Search</a>
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            function initMap() {
+                
+                var seattle = { lat: 47.606214, lng: -122.332089 };
+                var map = new google.maps.Map(document.getElementById('map'),{ 
+                    zoom: 9.5, 
+                    center: seattle 
+                });
+    
+                var contentString = "<p style='color:black'>{{results.0.name}}</p><p><a href='/location/{{results.0.id}}'><p><img src='/static/main/img/logos/{{results.0.logo}}.png' width=100></p><button class='btn btn-secondary'>Read More</button></a>";
+                var coords = { lat: {{results.0.lat}}, lng: {{results.0.long}} };
+    
+                var infowindow = new google.maps.InfoWindow({
+                    content: contentString
+                });
+                var marker = new google.maps.Marker({
+                    position: coords,
+                    map: map 
+                    });
+                marker.addListener('click', function () {
+                    infowindow.open(map, marker);
+                });
+            }
+    </script>
+    
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHWcZKJn_dIp9YzMeHhbWD-8Uu4m0GLv4&callback=initMap"
+        async defer>
+    </script>
+
+</body>
+
+</html>

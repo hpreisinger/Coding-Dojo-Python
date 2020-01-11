@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spooky in Seattle</title>
+    <meta name="description" content="Your guide to all things spooky in the greater Seattle area.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHWcZKJn_dIp9YzMeHhbWD-8Uu4m0GLv4&callback=initMap"
+        async defer></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <a href="/dashboard"><img src="/static/main/img/logo.png" alt="Spooky in Seattle logo"></a>
+        <div class="header-content">
+            <h1>{{user.first_name}} {{user.last_name}}</h1>
+            <a href="/favorites">
+                <h2>My Favorites</h2>
+            </a>
+            <a href="/logout"><button class="btn btn-secondary">Log Out</button></a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>{{location.name}}</h1>
+        <div class="main">
+            <div class="row">
+                <div class="col-lg profile-stat">
+                    <img src="/static/main/img/logos/{{location.logo}}.png" alt="logo of {{location.name}}">
+                    {% if location.category == 1 %}
+                    <h2>Haunted House</h2>
+                    {% elif location.category == 2 %}
+                    <h2>Ghost Tour</h2>
+                    {% elif location.category == 3 %}
+                    <h2>Costume Store</h2>
+                    {% elif location.category == 4 %}
+                    <h2>Magic Shop</h2>
+                    {% endif %}
+                    <p><b>Open Year-Round?</b> {{location.year_round}}</p>
+                    <p>{{location.description}}</p>
+                    <div class="buttons">
+                        <a href="{{location.website}}"><button class="btn btn-secondary">Visit Website</button></a>
+                        <form action="/location/{{location.id}}/add_fav">
+                            <input type="submit" class="btn btn-danger" value="Add to Favs">
+                        </form>
+                    </div>
+                    <p><a href="/results">Back to Results</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

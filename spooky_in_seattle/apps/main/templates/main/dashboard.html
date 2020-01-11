@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spooky in Seattle</title>
+    <meta name="description" content="By spooky Seattleites, for spooky Seattleites.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHWcZKJn_dIp9YzMeHhbWD-8Uu4m0GLv4&callback=initMap"
+        async defer></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <a href="/dashboard"><img src="/static/main/img/logo.png" alt="Spooky in Seattle logo"></a>
+        <div class="header-content">
+            <h1>{{user.first_name}} {{user.last_name}}</h1>
+            <a href="/favorites">
+                <h2>My Favorites</h2>
+            </a>
+            <a href="/logout"><button class="btn btn-secondary">Log Out</button></a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome, {{user.first_name}}. Let's get spooky.</h1>
+        <div class="main">
+            <h2>What are you looking for?</h2>
+            <form action="/process" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg section">
+                        <p><input type="checkbox" name="opt1" value="1">
+                            <h3>- Haunted Houses -</h3>
+                        </p>
+                        <p>From trails to farms to warehouses, this category includes all the haunted house attractions fit to visit within a reasonable driving distance of Seattle! Prepare to be scared! </p>
+                    </div>
+                    <div class="col-lg section">
+                        <p><input type="checkbox" name="opt2" value="2">
+                            <h3>- Ghost Tours -</h3>
+                        </p>
+                        <p>Informative and creepy tours of locations reputed to be haunted, all within easy reach of Seattle. Don't expect guaranteed scares - this category is more for those interested in stories, history, and the possibility of actual paranormal activity.</p>
+                    </div>
+                    <div class="col-lg section">
+                        <p><input type="checkbox" name="opt3" value="3">
+                            <h3>- Costume Stores -</h3>
+                        </p>
+                        <p>Need something suitable to wear to a Halloween party or other festive gathering? You could get a generic costume at Fred Meyer... or you could check out one of these speciality vendors in the area.</p>
+                    </div>
+                    <div class="col-lg section">
+                        <p><input type="checkbox" name="opt4" value="4">
+                            <h3>- Magic Shops -</h3>
+                        </p>
+                        <p>For all things metaphysical, occult, and witchy, turn to this category. Purchase crystals, tarot cards, esoteric texts, and more. Some locations are decidedly more spooky than others. </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg options">
+                        <p><input type="checkbox" name="open" value="year_round">
+                            &nbsp Show only locations that are open year-round (not just during the Halloween
+                            season).
+                        </p>
+                    </div>
+                </div>
+                <input class="btn btn-secondary submit" type="submit" value="Spook Me">
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

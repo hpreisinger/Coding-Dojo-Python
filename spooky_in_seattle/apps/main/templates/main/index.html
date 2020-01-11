@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spooky in Seattle</title>
+    <meta name="description" content="Your guide to all things spooky in the greater Seattle area.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHWcZKJn_dIp9YzMeHhbWD-8Uu4m0GLv4&callback=initMap"
+        async defer></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="/static/main/img/logo.png" alt="Spooky in Seattle logo">
+        </div>
+        <div class="main">
+            <p>Looking for haunted houses? Or ACTUAL haunted houses? Or somewhere to buy costumes, crystals, or
+                mysterious old
+                tomes? Look no further than Spooky in Seattle!</p>
+            <p>Please log in or create an account below.</p>
+        </div>
+        <div class="row">
+            <div class="col-lg login form">
+                <h2>Log In</h2>
+                <form action="/login" method="POST">
+                    {% csrf_token %}
+                    <p>Email <input class="form-control" type="text" name="email"></p>
+                    <p>Password <input class="form-control" type="password" name="password"></p>
+                    <input class="btn btn-secondary" type="submit" value="Log In">
+                </form>
+            </div>
+            <div class="col-lg spacer"></div>
+            <div class="col-lg register form">
+                <h2>Create an Account</h2>
+                <form action="/register" method="POST">
+                    {% csrf_token %}
+                    <p>First Name <input class="form-control" type="text" name="first_name"></p>
+                    <p>Last Name <input class="form-control" type="text" name="last_name"></p>
+                    <p>Email <input class="form-control" type="text" name="email"></p>
+                    <p>Password <input class="form-control" type="password" name="password"></p>
+                    <p>Confirm Password <input class="form-control" type="password" name="password_confirm"></p>
+                    <input class="btn btn-secondary" type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- smoke collection PNG Designed By Anuwat from <a href="https://pngtree.com/">Pngtree.com</a> -->
+
+
+</body>
+
+</html>

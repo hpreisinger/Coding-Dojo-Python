@@ -1,0 +1,218 @@
+* {
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    /* outline-style: solid; */
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("/static/main/img/bg.jpg");
+    background-attachment: fixed;
+    color: whitesmoke;
+}
+
+h1 {
+    font-style: italic;
+    font-size: 20pt;
+}
+
+h2 {
+    font-size: 18pt;
+}
+
+a {
+    color: rgb(255, 83, 83);
+    font-weight: bold;
+}
+
+a:hover {
+    color: rgb(63, 63, 63);
+}
+
+.container {
+    width: 60vw;
+    padding: 10px;
+    text-align: center;
+}
+
+.container h1 {
+    font-size: 30pt;
+    margin-bottom: 25px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.main {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background-color: rgb(107, 30, 30);
+    border-radius: 10px;
+    font-size: 120%;
+}
+
+.main h2 {
+    padding-top: 10px;
+    margin-bottom: 20px;
+}
+
+.login {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.spacer {
+    display: inline-block;
+    height:50px;
+}
+
+.register {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.header {
+    width: 100%;
+    height: 200px;
+    padding-top: 10px;
+    padding-left: 10px;
+    background-image: linear-gradient(rgb(107, 30, 30), rgb(64, 106, 145, 0));
+    text-align: center;
+}
+
+.header img {
+    display: inline-block;
+    height: 80%;
+}
+
+.header-content {
+    display: inline-block;
+    width: 70vw;
+    vertical-align: top;
+    text-align: right;
+}
+
+.header h2 {
+    font-size: 18pt;
+    font-weight: bolder;
+}
+
+.header a {
+    font-weight: normal;
+}
+
+.section {
+    margin-top: 10px;
+    border: 2px solid whitesmoke;
+    padding-top: 20px;
+}
+
+.row {
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+input[type=checkbox] {
+    display: inline-block;
+    transform: scale(2);
+}
+
+.section p {
+    font-size: 12pt;
+}
+
+.section h3 {
+    display: inline-block;
+    font-size: 100%;
+    text-decoration: underline;
+    text-decoration-color: rgb(255, 83, 83);
+    text-decoration-style: double;
+}
+
+.options {
+    margin-top: 10px;
+    padding-top: 10px;
+    background-color: rgb(63, 63, 63)
+}
+
+.options input[type=text] {
+    width: 100px;
+}
+
+.submit {
+    margin-top: 10px;
+    width: 30%;
+    padding: 10px;
+}
+
+table {
+    border: 3px solid black;
+    background-color: whitesmoke;
+}
+
+.profile-stat img {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px;
+    width: 300px;
+}
+
+.result {
+    text-align: left;
+    border: 5px solid rgb(63, 63, 63);
+    padding: 5px;
+    word-wrap: break-word;
+}
+
+.result-info {
+    display: inline-block;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.result-info img {
+    width: 200px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.buttons {
+    margin-bottom: 15px;
+}
+
+.buttons button {
+    display: inline-block;
+}
+
+.buttons form {
+    display: inline-block;
+}
+
+#map {
+    height: 100px;
+    border: 2px solid rgb(255, 83, 83);
+}
+
+.mapstuff {
+    height: 500px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}

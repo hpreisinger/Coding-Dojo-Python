@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spooky in Seattle</title>
+    <meta name="description" content="Your guide to all things spooky in the greater Seattle area.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHWcZKJn_dIp9YzMeHhbWD-8Uu4m0GLv4&callback=initMap"
+        async defer></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+
+<body>
+    <div class="header">
+        <a href="/dashboard"><img src="/static/main/img/logo.png" alt="Spooky in Seattle logo"></a>
+        <div class="header-content">
+            <h1>{{user.first_name}} {{user.last_name}}</h1>
+            <a href="/favorites">
+                <h2>My Favorites</h2>
+            </a>
+            <a href="/logout"><button class="btn btn-secondary">Log Out</button></a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Your Favorites</h1>
+        <div class="main">
+            {% if favlistLen == 0 %}
+            <p>You haven't added anything to your Favorites list yet!</p>
+            {% endif %}
+            <table class="table table-dark table-striped">
+                {% for location in favlist %}
+                <tr>
+                    <td>{{location.name}}</td>
+                    <td><a href="/location/{{location.id}}">More Info</a> | <a href="/location/{{location.id}}/remove_fav">Remove</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <a href="/results">Back to Results</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
