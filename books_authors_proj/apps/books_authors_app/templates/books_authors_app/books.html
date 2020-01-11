@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Books and Authors - Books</title>
+    <meta name="description" content="All the books and a form to add more.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books_authors_app/style.css' %}">
+</head>
+
+<body>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link active btn-dark" href="/books/">Book List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn-dark" href="/authors/">Author List</a>
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="form">
+            <h1>Add a Book</h1>
+            <form action="/book_form/" method="POST">
+                {% csrf_token %}
+                <p>Title <input type="text" class="form-control" name="title"></p>
+                <p>Description <textarea class="form-control" name="desc"></textarea></p>
+                <input class="btn btn-dark" type="submit">
+            </form>
+        </div>
+        <div class="list">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                {% for book in booklist %}
+                <tr>
+                    <td>{{book.id}}</td>
+                    <td>{{book.title}}</td>
+                    <td><a href="/books/{{book.id}}">View</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

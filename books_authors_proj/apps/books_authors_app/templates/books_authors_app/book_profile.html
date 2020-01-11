@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Books and Authors - Book Profile</title>
+    <meta name="description" content="Take a look! It is a book!">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books_authors_app/style.css' %}">
+</head>
+
+<body>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link btn-dark" href="/books/">Book List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn-dark" href="/authors/">Author List</a>
+        </li>
+    </ul>
+    <div class="container">
+        <div class="profile card">
+            <div class="card-body">
+                <h1 class="card-title">{{thisbook.title}}</h1>
+                <div class="stats card-text">
+                    <p>ID: {{thisbook.id}}</p>
+                    <p>Description: {{thisbook.desc}}</p>
+                    <p>Authors:
+                        <ul>
+                            {% for author in authors %}
+                            <li>{{author.first_name}} {{author.last_name}}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown">
+                <form class="form-inline" action="/author_dropdown/" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="book_id" value={{thisbook.id}}>
+                    <select class="form-control" name="author_id">
+                        {% for author in authorlist %}
+                        <option value={{author.id}}>{{author.first_name}} {{author.last_name}}</option>
+                        {% endfor %}
+                    </select>
+                    <input class="btn btn-dark" type="submit" value="Add">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

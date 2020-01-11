@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Books and Authors - Authors</title>
+    <meta name="description" content="All the authors and a form to add more.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books_authors_app/style.css' %}">
+</head>
+
+<body>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link btn-dark" href="/books/">Book List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active btn-dark" href="/authors/">Author List</a>
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="form">
+            <h1>Add an Author</h1>
+            <form action="/author_form/" method="POST">
+                {% csrf_token %}
+                <p>First Name <input type="text" class="form-control" name="first_name"></p>
+                <p>Last Name <input type="text" class="form-control" name="last_name"></p>
+                <p>Notes <textarea class="form-control" name="notes"></textarea></p>
+                <input class="btn btn-dark" type="submit">
+            </form>
+        </div>
+        <div class="list">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                {% for author in authorlist %}
+                <tr>
+                    <td>{{author.id}}</td>
+                    <td>{{author.first_name}} {{author.last_name}}</td>
+                    <td><a href="/authors/{{author.id}}">View</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

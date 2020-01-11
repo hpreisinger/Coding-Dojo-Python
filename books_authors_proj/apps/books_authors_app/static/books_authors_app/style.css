@@ -1,0 +1,83 @@
+* {
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+    /* outline-style: solid; */
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    text-align: center;
+    font-family: sans-serif;
+    background-image: linear-gradient(whitesmoke, lightskyblue);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.container {
+    display: inline-block;
+    width: 90%;
+    height: 700px;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.nav {
+    background: rgb(41, 41, 41);
+}
+
+.form {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    width: 45%;
+    height: 600px;
+    margin-right: 20px;
+}
+
+.list {
+    display: inline-block;
+    vertical-align: top;
+    width: 45%;
+    height: 600px;
+}
+
+.list table {
+    width: 100%;
+    border: 2px solid black;
+    background: whitesmoke;
+}
+
+.profile {
+    display: inline-block;
+    text-align: left;
+    width: 90%;
+    height: 600px;
+}
+
+.profile h1{
+    margin: 5px;
+}
+
+.stats {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.stats ul li {
+    margin-left: 20px;
+    padding: 5px;
+    list-style-position: inside;
+}
+
+.dropdown {
+    margin-left: 60px;
+    padding: 5px;
+}
+
+.dropdown input {
+    margin-left: 5px;
+}

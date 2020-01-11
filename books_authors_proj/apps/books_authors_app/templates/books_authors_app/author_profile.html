@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Books and Authors - Author Profile</title>
+    <meta name="description" content="Take a look! They wrote a book!">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books_authors_app/style.css' %}">
+</head>
+
+<body>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link btn-dark" href="/books/">Book List</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn-dark" href="/authors/">Author List</a>
+        </li>
+    </ul>
+
+    <div class="container">
+        <div class="profile card">
+            <div class="card-body">
+                <h1 class="card-title">{{thisauthor.first_name}} {{thisauthor.last_name}}</h1>
+                <div class="stats card-text">
+                    <p>ID: {{thisauthor.id}}</p>
+                    <p>Notes: {{thisauthor.notes}}</p>
+                    <p>Books:
+                        <ul>
+                            {% for book in books %}
+                            <li>{{book.title}}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="dropdown">
+                <form class="form-inline" action="/book_dropdown/" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="author_id" value={{thisauthor.id}}>
+                    <select class="form-control" name="book_id">
+                        {% for book in booklist %}
+                        <option value={{book.id}}>{{book.title}}</option>
+                        {% endfor %}
+                    </select>
+                    <input class="btn btn-dark" type="submit" value="Add">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
