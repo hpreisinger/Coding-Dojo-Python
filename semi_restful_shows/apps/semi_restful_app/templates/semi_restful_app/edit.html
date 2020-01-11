@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Semi-Restful Shows - Edit a Show</title>
+    <meta name="description" content="For when you messed up the first time.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'semi_restful_app/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="goback">
+            <a href="/shows">Go Back</a>
+        </div>
+        <div class="main">
+            <div class="form">
+                <h1>Edit Show {{thisShow.id}}</h1>
+                <form action="/shows/{{thisShow.id}}/update" method="POST">
+                    {% csrf_token %}
+                    <p>Title <input class="form-control" type="text" name="title"> <i>(currently:
+                            {{thisShow.title}})</i></p>
+                    <p>Network <input class="form-control" type="text" name="network"><i>(currently:
+                            {{thisShow.network}})</i></p>
+                    <p>Release Date <input class="form-control" type="date" name="release_date"><i>(currently:
+                            {{thisShow.release_date}})</i></p>
+                    <p>Description <textarea class="form-control" class="form-control" name="description"></textarea>
+                        <i>(currently:
+                            {{thisShow.description}})</i></p>
+                    <input class="btn btn-dark" type="submit">
+                </form>
+            </div>
+            <a href="/shows/{{thisShow.id}}">Go to Show</a>
+        </div>
+    </div>
+</body>
+
+</html>

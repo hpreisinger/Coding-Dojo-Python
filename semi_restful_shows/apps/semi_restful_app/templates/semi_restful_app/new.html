@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Semi-Restful Shows - Add a Show</title>
+    <meta name="description" content="Just not enough for you already, huh?">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'semi_restful_app/style.css' %}">
+</head>
+
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="container">
+        <div class="goback">
+            <a href="/shows">Go Back</a>
+        </div>
+        <div class="main">
+            <div class="form">
+                <h1>Add a New Show</h1>
+                <form action="/shows/create" method="POST">
+                    {% csrf_token %}
+                    <p>Title <input class="form-control" type="text" name="title"></p>
+                    <p>Network <input class="form-control" type="text" name="network"></p>
+                    <p>Release Date <input class="form-control" type="date" name="release_date"></p>
+                    <p>Description <textarea class="form-control" name="description"></textarea></p>
+                    <input class="btn btn-dark" type="submit">
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Semi-Restful Shows - View Show</title>
+    <meta name="description" content="Wow, such a good show.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'semi_restful_app/style.css' %}">
+</head>
+
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="container">
+        <div class="goback">
+            <a href="/shows">Go Back</a>
+        </div>
+        <div class="main">
+            <h1>TV Show {{thisShow.id}}</h1>
+            <p><b>TITLE</b> {{thisShow.title}}</p>
+            <p><b>NETWORK</b> {{thisShow.network}}</p>
+            <p><b>RELEASE DATE</b> {{thisShow.release_date}}</p>
+            <p><b>DESCRIPTION</b> {{thisShow.description}}</p>
+        </div>
+        <div class="footer">
+            <p>Last Updated: {{thisShow.updated_at}}</p>
+            <p>
+                <a href="/shows/{{thisShow.id}}/edit">Edit</a> |
+                <a href="/shows/{{thisShow.id}}/destroy">Delete</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

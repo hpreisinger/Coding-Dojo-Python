@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Semi-Restful Shows - All Shows</title>
+    <meta name="description" content="All the shows.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'semi_restful_app/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>All Shows</h1>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Network</th>
+                    <th>Release Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            {% for show in showList %}
+            <tr>
+                <td><a href="shows/{{show.id}}">{{show.id}}</a></td>
+                <td>{{show.title}}</td>
+                <td>{{show.network}}</td>
+                <td>{{show.release_date}}</td>
+                <td>
+                    <a href="/shows/{{show.id}}">Show</a> |
+                    <a href="/shows/{{show.id}}/edit">Edit</a> |
+                    <a href="/shows/{{show.id}}/destroy">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <p><a href="/shows/new">Add a New Show</a></p>
+    </div>
+</body>
+
+</html>
